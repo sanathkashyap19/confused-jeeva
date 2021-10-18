@@ -1,4 +1,4 @@
-<div class="form-container">
+<div class="form-container" *ngIf="!randomized">
   <form [formGroup]="inputForm">
 
     <p class="form-header">What's bothering you today?</p>
@@ -12,13 +12,31 @@
     <div formArrayName="options" class="form-block"
       *ngFor="let option of inputForm.controls.options?.controls; let i = index">
       <ng-container [formGroupName]="i">
-        <input placeholder="Enter your option" type="text">
+        <input placeholder="Enter your option" type="text" formControlName="option">
+        <!-- <div *ngIf="!inputForm.controls.options.valid && submitted">Please enter an option</div> -->
       </ng-container>
     </div>
 
     <button class="add-option" (click)="addOption()">Add option?</button>
 
-    <button class="form-submit" type="submit">What should I do?</button>
+    <button class="form-submit" (click)="presentOption()" type="submit">What should I
+      do?</button>
 
   </form>
+
+</div>
+
+<div class="result-container">
+  <div class="result-wrapper">
+
+    <ng-container *ngIf="inputForm.controls.question.value; then showQuestion else default"></ng-container>
+    <ng-template #showQuestion>
+      <p class="result-header">{{inputForm.controls.question.value}}</p>
+    </ng-template>
+    <ng-template #default>
+      <p class="result-header">The solution to your confusion is</p>
+    </ng-template>
+
+    <div class="result">{{result.option}}</div>
+  </div>
 </div>
