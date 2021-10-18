@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('./assets/styles/normalize.scss');
+
+
+:root {
+    --primary: #43b05c;
+    --primary-dark: #09641e;
+    --white: #fff;
+    --light-grey: #bbb;
+    --dark-grey: #999;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url('./assets/fonts/Montserrat-Regular.ttf');
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--primary);
+    font-family: 'Montserrat';
+}

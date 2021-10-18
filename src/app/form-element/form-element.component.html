@@ -1,0 +1,24 @@
+<div class="form-container">
+  <form [formGroup]="inputForm">
+
+    <p class="form-header">What's bothering you today?</p>
+
+    <div class="form-block">
+      <input placeholder="Enter your question" type="text" formControlName="question">
+    </div>
+
+    <p class="form-header">And what options are you stuck between?</p>
+
+    <div formArrayName="options" class="form-block"
+      *ngFor="let option of inputForm.controls.options?.controls; let i = index">
+      <ng-container [formGroupName]="i">
+        <input placeholder="Enter your option" type="text">
+      </ng-container>
+    </div>
+
+    <button class="add-option" (click)="addOption()">Add option?</button>
+
+    <button class="form-submit" type="submit">What should I do?</button>
+
+  </form>
+</div>
