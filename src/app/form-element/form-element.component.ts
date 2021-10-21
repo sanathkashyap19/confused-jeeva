@@ -48,6 +48,7 @@ export class FormElementComponent implements OnInit {
       let options = this.inputForm.controls.options.value;
       let randomNumber = Math.floor(Math.random() * options.length);
       this.result = options[randomNumber];
+      this.dataService.postData(this.inputForm.getRawValue()).subscribe();
       console.log(this.result);
       this.randomized = true;
     } else {
