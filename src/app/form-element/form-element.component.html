@@ -26,17 +26,21 @@
 
 </div>
 
-<div class="result-container">
+<mat-progress-spinner *ngIf="spinnerDisplay" mode="indeterminate" color="primary"></mat-progress-spinner>
+
+<div class="result-container" *ngIf="!spinnerDisplay">
   <div class="result-wrapper">
 
-    <ng-container *ngIf="inputForm.controls.question.value; then showQuestion else default"></ng-container>
-    <ng-template #showQuestion>
-      <p class="result-header">{{inputForm.controls.question.value}}</p>
-    </ng-template>
-    <ng-template #default>
-      <p class="result-header">The solution to your confusion is</p>
-    </ng-template>
+    <ng-container>
+      <ng-container *ngIf="inputForm.controls.question.value; then showQuestion else default"></ng-container>
+      <ng-template #showQuestion>
+        <p class="result-header">{{inputForm.controls.question.value}}</p>
+      </ng-template>
+      <ng-template #default>
+        <p class="result-header">The solution to your confusion is</p>
+      </ng-template>
 
-    <div class="result">{{result.option}}</div>
+      <div class="result">{{result.option}}</div>
+    </ng-container>
   </div>
 </div>

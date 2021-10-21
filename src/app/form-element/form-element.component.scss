@@ -73,6 +73,18 @@
     }
 }
 
+::ng-deep .mat-progress-spinner,
+.mat-spinner {
+    position: relative;
+    margin: auto;
+    top: 50%;
+    bottom: 50%;
+
+    circle {
+        stroke: var(--white);
+    }
+}
+
 .result {
 
     &-container {
@@ -81,19 +93,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
-
     }
 
     &-wrapper {
         background-color: var(--white);
         padding: 45px;
         border-radius: 10px;
+        text-align: center;
     }
 
     &-header {
         font-size: 24px;
         font-weight: bold;
         color: var(--primary-dark);
+        margin-top: 0;
     }
 }

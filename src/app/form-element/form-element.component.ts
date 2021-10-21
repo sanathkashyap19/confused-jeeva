@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { DataService } from "../service/data.service";
 
 @Component({
   selector: "app-form-element",
@@ -9,9 +10,13 @@ import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class FormElementComponent implements OnInit {
   inputForm: FormGroup;
   randomized: boolean = false;
+  spinnerDisplay: boolean = true;
   result;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private dataService: DataService
+  ) {}
 
   ngOnInit() {
     this.randomized = false;
@@ -36,6 +41,10 @@ export class FormElementComponent implements OnInit {
 
   presentOption() {
     if (this.inputForm.valid) {
+      setTimeout(() => {
+        this.spinnerDisplay = false;
+      }, 2000);
+      console.log(this.inputForm.getRawValue());
       let options = this.inputForm.controls.options.value;
       let randomNumber = Math.floor(Math.random() * options.length);
       this.result = options[randomNumber];
